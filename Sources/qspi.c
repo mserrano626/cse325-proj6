@@ -15,12 +15,12 @@ void qspi_init(){
 	MCF_QSPI_QIR &= 0x0101;
 }
 
-void qspi_transmit(uint8 seq[]){
+void qspi_transmit(uint8 data[]){
 	int i;
 		//write data values to be transmitted to the transmit queue
 		for(i = 0; i < 3; i++) {
 			MCF_QSPI_QAR = (unsigned short) i;
-			MCF_QSPI_QDR = (unsigned short) seq[i];
+			MCF_QSPI_QDR = (unsigned short) data[i];
 		}
 		
 		//write commands to control the transmission to the command queue

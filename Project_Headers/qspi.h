@@ -9,7 +9,7 @@
 #define QSPI_H_
 
 extern void qspi_init();
-extern void qspi_transmit(uint8 seq[]);
+extern void qspi_transmit(uint8 data[]);
 
 
 #endif /* QSPI_H_ */

@@ -101,15 +101,15 @@ void update_matrix(){
 }
 
 void write_matrix(){
-	uint8 seq[3];
-	seq[0] = Red [Row];
-	seq[1] = Green [Row];
-	seq[2] = (unsigned char) ~(1 << Row);
+	uint8 data[3];
+	data[0] = Red [Row];
+	data[1] = Green [Row];
+	data[2] = (unsigned char) ~(1 << Row);
 			
 	MCF_GPIO_SETTH |= 0x80;
 	MCF_GPIO_CLRTH &= 0xBF;
 		
-	qspi_transmit(seq); 
+	qspi_transmit(data); 
 	
 	MCF_GPIO_SETTH |= 0x40;
 	MCF_GPIO_CLRTH &= 0x7F;
@@ -121,6 +121,3 @@ void write_matrix(){
 		Row = 0;
 	}
 }
-
-
-
