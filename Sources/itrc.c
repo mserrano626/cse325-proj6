@@ -7,10 +7,6 @@
  */
 
 #include "itrc.h"
-//#include "pit.h"
-//#include "pwm.h"
-//#include "note.h"
-//#include "song.h"
 #include "global.h"
 
 
@@ -57,7 +53,7 @@ asm __declspec(standard_abi) void int_uninhibit_all(){
 
 __declspec(interrupt) void pit0_isr(){
 
-                led_refresh();
+                //led_refresh();
                 //Clear pit 0 channel 0 interrupt request flag
                 MCF_PIT0_PCSR |= 0x0004;
 
