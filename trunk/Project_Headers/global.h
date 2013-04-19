@@ -10,8 +10,8 @@
 
 #include "itrc.h"
 #include "support_common.h"
-
-extern void led_refresh();
-extern void qspi_transmit(uint8 data[]);
+#include "qspi.h"
+#include "pit.h"
+#include "ledm.h"
 
 #endif /* GLOBAL_H_ */
