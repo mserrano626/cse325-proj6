@@ -47,7 +47,7 @@ int pattern3[8][8] = {
         { black, green, black, green, black, green, black, black},
         { black, green, black, green, black, green, black, black},
         { black, black, black, black, black, black, black, black},
-        { black, black, black, black, black, black, black, black}
+        { black, black, black, black, black, black, black, red}
 };
 
 int new_pattern[8][8];
@@ -61,7 +61,7 @@ void ledm_init(){
 
 	MCF_GPIO_SETTH |= 0x80;
 	
-	ledm_refresh(pattern3);
+	ledm_refresh(pattern2);
 }
 
 void ledm_refresh(int pattern[8][8]){

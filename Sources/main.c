@@ -11,11 +11,11 @@
 
 __declspec(noreturn) void main(){
 	
-	int_uninhibit_all();
+	
 	pit_init();
 	qspi_init();
 	ledm_init();
-	
+	int_uninhibit_all();
 	
 	for(;;) {	   
 		write_matrix();
