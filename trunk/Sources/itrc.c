@@ -51,6 +51,16 @@ asm __declspec(standard_abi) void int_uninhibit_all(){
         
 }
 
+asm __declspec(standard_abi) void int_inhibit_all(){
+        
+        move.w SR, d0
+        ori.l #0x0700, d0
+        move.w d0, SR
+        rts
+        
+}
+
+
 __declspec(interrupt) void pit0_isr(){
 
                 //led_refresh();
