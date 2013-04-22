@@ -86,16 +86,80 @@ void i2c_rx(int addr, int count, int data[], int delay_us){
 
 }
 
-uint8 i2c_rx_byte(delay_us){
+uint8 i2c_rx_byte(int delay_us){
 	uint8 byte;
 	byte = MCF_I2C0_I2DR;
-	while(!(i2c_tx_complete)){};
+	while(!(i2c_tx_complete())){};
 	MCF_I2C0_I2SR &= ~(0x02);
 	//DELAY delay_us using one of the DMA timers
+	{
+	MCF_DTIM0_DTMR = 0x4F0A;
+	MCF_DTIM0_DTXMR = 0x40;
 	
+	MCF_DTIM0_DTCN = 0x0;
+	MCF_DTIM0_DTRR = (unsigned long)(delay_us -1);
+	MCF_DTIM0_DTER |= 0x02;
+	MCF_DTIM0_DTMR |= 0x0001;
 	
+	while(~MCF_DTIM0_DTER & 0x02){}
+		
+	}
 	return byte;
 }
 
+void i2c_rxtx_end(){
+	
+	//clear I2CR[MSTA]
+	MCF_I2C0_I2CR &= ~(0x20); 
+	i2c_reset();
+}
 
+void i2c_tx(int addr, int count, unsigned char data[], int delay_us){
+	int i;
+	
+	i2c_acquire_bus();
+	i2c_tx_addr(addr, I2C_WRITE, delay_us);
+	
+	for(i = 0;i <= count -1; i++){
+		i2c_tx_byte(data[i], delay_us);
+	}
+	i2c_rxtx_end();
+}
 
+void i2c_tx_addr(int addr, int rw, int delay_us){
+	int addr_rw;
+	
+	MCF_I2C0_I2CR |= 0x10;
+	MCF_I2C0_I2CR |= 0x20;
+	
+	addr_rw = addr << 1;
+	addr_rw |= rw;
+	
+	i2c_tx_byte((unsigned char)addr_rw, delay_us);
+	
+}
+
+void i2c_tx_byte(unsigned char byte, int delay_us){
+	int_inhibit_all();
+	
+	MCF_I2C0_I2DR = byte;
+	
+	while(!(i2c_tx_complete())){}
+	
+	MCF_I2C0_I2SR &= ~(0x02);
+	
+	int_uninhibit_all();
+	
+	MCF_DTIM0_DTCN = 0x0;
+	MCF_DTIM0_DTRR = (unsigned long)(delay_us -1);
+	MCF_DTIM0_DTER |= 0x02;
+	MCF_DTIM0_DTMR |= 0x0001;
+}
+
+char i2c_tx_complete(){
+	if(MCF_I2C0_I2SR & 0x02){
+		return 1;
+	}
+	else 
+		return 0;
+}
