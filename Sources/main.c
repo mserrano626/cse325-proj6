@@ -16,6 +16,7 @@ __declspec(noreturn) void main(){
 	qspi_init();
 	ledm_init();
 	int_uninhibit_all();
+	game_init();
 	
 	for(;;) {	   
 		write_matrix();

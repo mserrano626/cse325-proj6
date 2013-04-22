@@ -15,6 +15,7 @@
 #include "ledm.h"
 #include "i2c.h"
 #include "nunchuck.h"
+#include "pacman.h"
 
 
 #endif /* GLOBAL_H_ */
