@@ -60,7 +60,7 @@ void i2c_reset(){
 
 }
 
-void i2c_rx(int addr, int count, int data[], int delay_us){
+void i2c_rx(int addr, int count, unsigned char data[], int delay_us){
 	int i;
 	
 	i2c_acquire_bus();

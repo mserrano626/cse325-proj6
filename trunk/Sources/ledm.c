@@ -61,7 +61,7 @@ void ledm_init(){
 
 	MCF_GPIO_SETTH |= 0x80;
 	
-	ledm_refresh(pattern2);
+	ledm_refresh(pattern3);
 }
 
 void ledm_refresh(int pattern[8][8]){
