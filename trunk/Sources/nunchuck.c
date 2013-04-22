@@ -11,7 +11,7 @@
 #define FST_NUNCHUK_REFRESH_MS	250
 
 int count;
-unsigned char data[6];
+
 
 void fst_nunchuk_init(){
 	fst_nunchuk_reset();
@@ -49,7 +49,7 @@ void fst_nunchuk_on_stick_up(void(*callback)(void)){
 
 void fst_nunchuk_read (){
 	
-	
+	unsigned char data[6] = {0x80, 0x80, 0, 0, 0, 0};
 	
 	fst_nunchuk_xmit_cmd(0xF0, 0x55);
 	
