@@ -13,5 +13,7 @@
 #include "qspi.h"
 #include "pit.h"
 #include "ledm.h"
+#include "i2c.h"
+#include "nunchuck.h"
 
 #endif /* GLOBAL_H_ */
