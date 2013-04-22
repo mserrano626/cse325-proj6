@@ -95,6 +95,9 @@ void fst_nunchuk_reset(){
 }
 
 void fst_nunchuk_xmit_cmd (unsigned char reg, unsigned char cmd){
+	
+	unsigned char data[2] = {0, 0};
+	
 	if (reg != 0x00)
 	{
 		data[0] = reg;

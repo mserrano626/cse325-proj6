@@ -13,7 +13,7 @@
 #define	orange 3
 
 int pattern3[8][8] = {
-        { black, black, black, black, black, black, black, black},
+        { red, black, black, black, black, black, black, black},
         { black, green, green, green, green, green, black, black},
         { black, green, black, black, black, black, black, black},
         { black, green, black, green, green, green, black, black},
