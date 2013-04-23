@@ -16,6 +16,7 @@
 #include "i2c.h"
 #include "nunchuck.h"
 #include "pacman.h"
+#include "dtim.h"
 
 
 #endif /* GLOBAL_H_ */

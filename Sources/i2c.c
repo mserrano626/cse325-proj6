@@ -60,7 +60,7 @@ void i2c_reset(){
 
 }
 
-void i2c_rx(int addr, int count, unsigned char data[], int delay_us){
+void i2c_rx(int addr, int count, int data[], int delay_us){
 	int i;
 	
 	i2c_acquire_bus();
@@ -92,18 +92,10 @@ uint8 i2c_rx_byte(int delay_us){
 	while(!(i2c_tx_complete())){};
 	MCF_I2C0_I2SR &= ~(0x02);
 	//DELAY delay_us using one of the DMA timers
-	{
-	MCF_DTIM0_DTMR = 0x4F0A;
-	MCF_DTIM0_DTXMR = 0x40;
+	dtim0_init();
+	dtim0_delay(delay_us);
 	
-	MCF_DTIM0_DTCN = 0x0;
-	MCF_DTIM0_DTRR = (unsigned long)(delay_us -1);
-	MCF_DTIM0_DTER |= 0x02;
-	MCF_DTIM0_DTMR |= 0x0001;
 	
-	while(~MCF_DTIM0_DTER & 0x02){}
-		
-	}
 	return byte;
 }
 
@@ -146,14 +138,13 @@ void i2c_tx_byte(unsigned char byte, int delay_us){
 	
 	while(!(i2c_tx_complete())){}
 	
+	
 	MCF_I2C0_I2SR &= ~(0x02);
 	
-	int_uninhibit_all();
+	//while(1){write_matrix();}
+	int_uninhibit_all();//this is where my program is not working 
 	
-	MCF_DTIM0_DTCN = 0x0;
-	MCF_DTIM0_DTRR = (unsigned long)(delay_us -1);
-	MCF_DTIM0_DTER |= 0x02;
-	MCF_DTIM0_DTMR |= 0x0001;
+	dtim0_delay(delay_us);
 }
 
 char i2c_tx_complete(){

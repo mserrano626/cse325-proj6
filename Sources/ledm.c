@@ -17,38 +17,7 @@ uint8 Row;
 #define	green 2
 #define	orange 3
 
-int pattern1[8][8] = {
-                { orange, black, black, green, green, black, black, orange},
-                { black, black, green, black, black, green, black, black},
-                { black, green, black, black, black, black, green, black},
-                { green, black, black, red, red, black, black, green},
-                { green, black, black, red, red, black, black, green},
-                { black, green, black, black, black, black, green, black},
-                { black, black, green, black, black, green, black, black},
-                { orange, black, black, green, green, black, black, orange}
-};
 
-int pattern2[8][8] = {
-        { red, black, black, black, black, black, black, red},
-        { black, black, green, black, black, green, black, black},
-        { black, black, green, black, black, green, black, black},
-        { black, black, black, black, black, black, black, black},
-        { black, black, black, black, black, black, black, black},
-        { black, green, black, black, black, black, green, black},
-        { black, black, green, black, black, green, black, black},
-        { red, black, black, green, green, black, black, red}
-};
-
-int pattern4[8][8] = {
-        { black, black, black, black, black, black, black, black},
-        { black, green, green, green, green, green, black, black},
-        { black, green, black, black, black, black, black, black},
-        { black, green, black, green, green, green, black, black},
-        { black, green, black, green, black, green, black, black},
-        { black, green, black, green, black, green, black, black},
-        { black, black, black, black, black, black, black, black},
-        { black, black, black, black, black, black, black, orange}
-};
 
 int new_pattern[8][8];
 

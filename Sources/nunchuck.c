@@ -15,9 +15,9 @@ int count;
 
 void fst_nunchuk_init(){
 	fst_nunchuk_reset();
-	//DTIM3 INIT
+	dtim0_init();
 	i2c_init(); //100 kHz
-	//pit_init()
+	pit1_init();
 	//set up pit timer
 	
 	
@@ -47,9 +47,9 @@ void fst_nunchuk_on_stick_up(void(*callback)(void)){
 	g_callback_stick_up = callback;
 }
 
-void fst_nunchuk_read (){
+void fst_nunchuk_read(){
 	
-	unsigned char data[6] = {0x80, 0x80, 0, 0, 0, 0};
+	int data[6] = {0x80, 0x80, 0, 0, 0, 0};
 	
 	fst_nunchuk_xmit_cmd(0xF0, 0x55);
 	
@@ -113,5 +113,5 @@ void fst_nunchuk_xmit_cmd (unsigned char reg, unsigned char cmd){
 	
 	//use DMA timer 3 to busy-delay for 2x FST_NUNCHUK_DELAY_US microseconds
 	
-	
+	dtim0_delay(2*FST_NUNCHUK_DELAY_US);
 }

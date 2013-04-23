@@ -22,6 +22,31 @@ int pattern3[8][8] = {
         { black, black, black, black, black, black, black, black},
         { black, black, black, black, black, black, black, orange}
 };
+int pattern1[8][8] = {
+                { orange, black, black, green, green, black, black, orange},
+                { black, black, green, black, black, green, black, black},
+                { black, green, black, black, black, black, green, black},
+                { green, black, black, red, red, black, black, green},
+                { green, black, black, red, red, black, black, green},
+                { black, green, black, black, black, black, green, black},
+                { black, black, green, black, black, green, black, black},
+                { orange, black, black, green, green, black, black, orange}
+};
+
+int pattern2[8][8] = {
+        { red, black, black, black, black, black, black, red},
+        { black, black, green, black, black, green, black, black},
+        { black, black, green, black, black, green, black, black},
+        { black, black, black, black, black, black, black, black},
+        { black, black, black, black, black, black, black, black},
+        { black, green, black, black, black, black, green, black},
+        { black, black, green, black, black, green, black, black},
+        { red, black, black, green, green, black, black, red}
+};
+
+
+
+
 
 void game_init(){
 	
