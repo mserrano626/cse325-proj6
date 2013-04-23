@@ -12,13 +12,13 @@
 __declspec(noreturn) void main(){
 	
 	
-	pit_init();
+	pit0_init();
 	qspi_init();
 	ledm_init();
 	int_uninhibit_all();
 	game_init();
-	
+	//fst_nunchuk_init();//look in i2c_tx_byte
 	for(;;) {	   
-		write_matrix();
+		
 	}
 }

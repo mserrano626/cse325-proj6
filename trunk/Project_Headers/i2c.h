@@ -11,7 +11,7 @@
 extern void i2c_acquire_bus();
 extern void i2c_reset();
 extern void i2c_init();
-extern void i2c_rx(int addr, int count, unsigned char data[], int delay_us);
+extern void i2c_rx(int addr, int count, int data[], int delay_us);
 extern uint8 i2c_rx_byte(int delay_us);
 extern void i2c_rxtx_end();
 extern void i2c_tx(int addr, int count, unsigned char data[], int delay_us);

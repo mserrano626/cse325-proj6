@@ -66,6 +66,8 @@ __declspec(interrupt) void pit0_isr(){
                 //led_refresh();
                 //Clear pit 0 channel 0 interrupt request flag
                 MCF_PIT0_PCSR |= 0x0004;
+                
+                write_matrix();
 
                 //stop current note
                 //note(0xFF, 0x03);
@@ -75,6 +77,19 @@ __declspec(interrupt) void pit0_isr(){
 
                 // next row
                 
+}
+
+__declspec(interrupt) void pit1_isr(){
+
+                //led_refresh();
+                //Clear pit 0 channel 0 interrupt request flag
+                MCF_PIT1_PCSR |= 0x0004;
+
+                
+                //note(0xFF, 0x03);
+
+                //nunchuck read
+                fst_nunchuk_read();
 }
 
 __declspec(interrupt) void gpt0_isr()
