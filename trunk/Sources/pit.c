@@ -25,6 +25,7 @@ void pit0_init(){
     interupt_config(55, 5, 7, pit0_isr);
     
     MCF_PIT0_PCSR |= 1; // Enable timer
+    
 }
 
 void pit1_init(){
@@ -40,7 +41,7 @@ void pit1_init(){
     MCF_PIT1_PCSR |= (11) << 8;
     
     
-    interupt_config(56, 5, 7, pit1_isr);
+    interupt_config(56, 4, 6, pit1_isr);
     
     
     MCF_PIT1_PCSR |= 1; // Enable timer

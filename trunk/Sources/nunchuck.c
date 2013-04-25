@@ -17,7 +17,7 @@ void fst_nunchuk_init(){
 	fst_nunchuk_reset();
 	dtim0_init();
 	i2c_init(); //100 kHz
-	pit1_init();
+	//pit1_init();
 	//set up pit timer
 	
 	
@@ -96,7 +96,7 @@ void fst_nunchuk_reset(){
 
 void fst_nunchuk_xmit_cmd (unsigned char reg, unsigned char cmd){
 	
-	unsigned char data[2] = {0, 0};
+	int data[2] = {0, 0};
 	
 	if (reg != 0x00)
 	{

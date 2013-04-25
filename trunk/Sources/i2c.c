@@ -74,6 +74,7 @@ void i2c_rx(int addr, int count, int data[], int delay_us){
 	
 	dummy &= i2c_rx_byte(delay_us);
 	
+	
 	for(i = 0; i <= (count -2); i++){
 		data[i] = i2c_rx_byte(delay_us);
 	}
@@ -106,32 +107,32 @@ void i2c_rxtx_end(){
 	i2c_reset();
 }
 
-void i2c_tx(int addr, int count, unsigned char data[], int delay_us){
+void i2c_tx(int addr, int count, int data[], int delay_us){
 	int i;
 	
 	i2c_acquire_bus();
 	i2c_tx_addr(addr, I2C_WRITE, delay_us);
 	
 	for(i = 0;i <= count -1; i++){
-		i2c_tx_byte(data[i], delay_us);
+		i2c_tx_byte((unsigned char)data[i], delay_us);
 	}
 	i2c_rxtx_end();
 }
 
 void i2c_tx_addr(int addr, int rw, int delay_us){
-	int addr_rw;
+	uint8 addr_rw = 0;
 	
 	MCF_I2C0_I2CR |= 0x10;
 	MCF_I2C0_I2CR |= 0x20;
 	
-	addr_rw = addr << 1;
+	addr_rw |= addr << 1;
 	addr_rw |= rw;
 	
-	i2c_tx_byte((unsigned char)addr_rw, delay_us);
+	i2c_tx_byte(addr_rw, delay_us);
 	
 }
 
-void i2c_tx_byte(unsigned char byte, int delay_us){
+void i2c_tx_byte(uint8 byte, int delay_us){
 	int_inhibit_all();
 	
 	MCF_I2C0_I2DR = byte;
@@ -143,11 +144,11 @@ void i2c_tx_byte(unsigned char byte, int delay_us){
 	
 	//while(1){write_matrix();}
 	int_uninhibit_all();//this is where my program is not working 
-	
+	//write_matrix();
 	dtim0_delay(delay_us);
 }
 
-char i2c_tx_complete(){
+int i2c_tx_complete(){
 	if(MCF_I2C0_I2SR & 0x02){
 		return 1;
 	}
