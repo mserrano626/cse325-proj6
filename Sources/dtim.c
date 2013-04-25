@@ -8,9 +8,14 @@
 #include "global.h"
 
 void dtim0_init(){
+	/*
 	MCF_DTIM0_DTMR = 0x4F0A;
 	MCF_DTIM0_DTXMR = 0x40;
-	
+	*/
+    MCF_DTIM0_DTMR |= (1 << 1);
+    MCF_DTIM0_DTMR |= (1 << 3);
+    MCF_DTIM0_DTMR |= (0xF << 8);
+    MCF_DTIM0_DTMR |= 1;
 }
 
 void dtim1_init(){
@@ -25,13 +30,21 @@ void dtim3_init(){
 }
 
 void dtim0_delay(int p_delay){
+	/*
 	MCF_DTIM0_DTCN = 0x00;
 	MCF_DTIM0_DTRR = (unsigned long)(p_delay -1);
 	MCF_DTIM0_DTER |= 0x02; 
 	MCF_DTIM0_DTMR |= 0x0001;
 	
 	while(~MCF_DTIM0_DTER & 0x02){}
-	
+	*/
+	MCF_DTIM0_DTRR = ((unsigned long)5* p_delay-1);
+	MCF_DTIM0_DTCN &= 0;
+	                        
+	while(((MCF_DTIM0_DTER & ( 1 << 1 )) >> 1) != 1)
+	{
+	}
+	MCF_DTIM0_DTER |= (1 << 1);
 	
 }
 void dtim3_delay(int p_delay){

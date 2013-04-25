@@ -17,7 +17,7 @@ __declspec(noreturn) void main(){
 	ledm_init();
 	int_uninhibit_all();
 	game_init();
-	//fst_nunchuk_init();//look in i2c_tx_byte
+	fst_nunchuk_init();//look in i2c_tx_byte
 	for(;;) {	   
 		
 	}
