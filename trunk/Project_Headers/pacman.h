@@ -8,6 +8,7 @@
 #ifndef PACMAN_H_
 #define PACMAN_H_
 
-extern void game_init();
-
+extern void game_refresh();
+extern void change_dir(int);
+extern void game_reset();
 #endif /* PACMAN_H_ */

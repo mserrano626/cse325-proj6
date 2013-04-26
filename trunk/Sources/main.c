@@ -9,16 +9,24 @@
 #include "support_common.h" /* include peripheral declarations and more */
 #include "global.h"
 
+
+
+
 __declspec(noreturn) void main(){
 	
 	
-	pit0_init();
+	fst_nunchuk_init();//look in i2c_tx_byte
+	
+	//pit0_init();
+	//pit1_init();
 	qspi_init();
 	ledm_init();
 	int_uninhibit_all();
-	game_init();
-	fst_nunchuk_init();//look in i2c_tx_byte
-	for(;;) {	   
+	game_reset();
+	
+	
+	
+	for(;;) {
 		
 	}
 }

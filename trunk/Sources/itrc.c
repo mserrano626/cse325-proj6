@@ -12,7 +12,7 @@
 
 
 extern uint32 __VECTOR_RAM[];
-
+int screencount;
 #define ICR_BASE (volatile uint8 *)(0x40000C40)
 
 void interupt_config(int src, int level, int priority, isr_funct isr){
@@ -63,19 +63,17 @@ asm __declspec(standard_abi) void int_inhibit_all(){
 
 __declspec(interrupt) void pit0_isr(){
 
-                //led_refresh();
-                //Clear pit 0 channel 0 interrupt request flag
+
                 MCF_PIT0_PCSR |= 0x0004;
+               
+                screencount++;
                 
-                write_matrix();
+                ledm_refresh();
+                if(screencount == 256){
+                	screencount = 0;
+                	game_refresh();
+                }
 
-                //stop current note
-                //note(0xFF, 0x03);
-
-                //stop timer and reset
-                //pit_off();
-
-                // next row
                 
 }
 
@@ -83,15 +81,21 @@ __declspec(interrupt) void pit1_isr(){
 
                 //led_refresh();
                 //Clear pit 0 channel 0 interrupt request flag
-                MCF_PIT1_PCSR |= 0x0004;
+                //disable pit 1
+				MCF_PIT1_PCSR &= ~(0x01) << 0;
+				//clear interupt
+				MCF_PIT1_PCSR |= 0x0004;
 
                 
                 //note(0xFF, 0x03);
 
                 //nunchuck read
                 fst_nunchuk_read();
+                //enable pit 1
+                MCF_PIT1_PCSR |= 0x01;
 }
 
+/*
 __declspec(interrupt) void gpt0_isr()
 {
         //Clear the interrupt request flag
@@ -108,3 +112,5 @@ __declspec(interrupt) void gpt0_isr()
         //MCF_QSPI_QIR &= (~(0x1) << 8);
         
 //}
+ */
+ 

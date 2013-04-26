@@ -19,7 +19,7 @@ void pit0_init(){
     MCF_PIT0_PCSR |= 1 << 2; // Clear interrupt request flag
     MCF_PIT0_PCSR |= 1 << 1; // Make PCNTR0 value into PMR0
     
-    MCF_PIT0_PMR = 4999;
+    MCF_PIT0_PMR = 999;
     MCF_PIT0_PCSR |= (3) << 8;
     
     interupt_config(55, 5, 7, pit0_isr);
@@ -37,11 +37,11 @@ void pit1_init(){
     MCF_PIT1_PCSR |= 1 << 2; // Clear interrupt request flag
     MCF_PIT1_PCSR |= 1 << 1; // Make PCNTR0 value into PMR0
     
-    MCF_PIT1_PMR = 999;
+    MCF_PIT1_PMR = 49999;
     MCF_PIT1_PCSR |= (11) << 8;
     
     
-    interupt_config(56, 4, 6, pit1_isr);
+    interupt_config(56, 5, 7, pit1_isr);
     
     
     MCF_PIT1_PCSR |= 1; // Enable timer

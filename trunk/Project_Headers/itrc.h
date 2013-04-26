@@ -20,7 +20,7 @@ extern asm __declspec(standard_abi) void int_uninhibit_all();
 extern asm __declspec(standard_abi) void int_inhibit_all();
 extern __declspec(interrupt) void pit0_isr();
 extern __declspec(interrupt) void pit1_isr();
-extern __declspec(interrupt) void gpt0_isr();
+//extern __declspec(interrupt) void gpt0_isr();
 //extern __declspec(interrput) void qspi_isr();
 
 #endif /* ITRC_H_ */

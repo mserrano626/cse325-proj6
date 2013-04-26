@@ -32,7 +32,7 @@ void ledm_init(){
 	
 }
 
-void ledm_refresh(int pattern[8][8]){
+void write_matrix(int pattern[8][8]){
 	int i;
 	int j;
 	
@@ -64,11 +64,11 @@ void update_matrix(){
 			}
 		}
 	}
-	write_matrix();
+	ledm_refresh();
 	pit0_enable();
 }
 
-void write_matrix(){
+void ledm_refresh(){
 	uint8 data[3];
 	data[0] = Red [Row];
 	data[1] = Green [Row];
