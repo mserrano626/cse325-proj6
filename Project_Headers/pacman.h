@@ -15,4 +15,8 @@ extern void ghost_movement();
 extern void clear_ghost();
 extern void pac_movement();
 extern void clear_pac();
+extern int check_wall_up();
+extern int check_wall_down();
+extern int check_wall_left();
+extern int check_wall_right();
 #endif /* PACMAN_H_ */

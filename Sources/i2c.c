@@ -50,7 +50,7 @@ void i2c_init(){
 
 void i2c_reset(){
 	
-	MCF_I2C0_I2CR &= 0x00;
+	//MCF_I2C0_I2CR &= 0x00;
 	MCF_I2C0_I2CR |= 0x80; //configure IEN
 	MCF_I2C0_I2CR &= ~(0x40);
 	MCF_I2C0_I2CR &= ~(0x20);

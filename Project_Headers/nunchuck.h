@@ -20,7 +20,7 @@ extern void fst_nunchuk_init();
 
 extern void fst_nunchuk_read ();
 extern void fst_nunchuk_reset();
-extern void fst_nunchuk_xmit_cmd (unsigned char, unsigned char);
+extern void fst_nunchuk_xmit_cmd (int, int);
 
 /*
 static  void (*g_callback_button_c)(void);
