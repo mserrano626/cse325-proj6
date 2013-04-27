@@ -74,7 +74,10 @@ __declspec(interrupt) void pit0_isr(){
                 	if(end_game != 0){
                 		game_refresh();
                 	}
-                	
+                	else if(end_game == 0){
+                		//dead_sound();
+                	}
+           
                 	
                 }
 
@@ -83,7 +86,7 @@ __declspec(interrupt) void pit0_isr(){
 
 __declspec(interrupt) void pit1_isr(){
 
-              
+              	
                 //Clear pit 1 channel 0 interrupt request flag
                 //disable pit 1
 				MCF_PIT1_PCSR &= ~(0x01) << 0;
@@ -91,7 +94,8 @@ __declspec(interrupt) void pit1_isr(){
 				MCF_PIT1_PCSR &= ~((0x01) << 2);
 
                 
-               
+				//play note
+				note(0xFF);
 
                 //nunchuck read
                 fst_nunchuk_read();

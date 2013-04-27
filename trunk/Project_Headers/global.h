@@ -18,6 +18,7 @@
 #include "pacman.h"
 #include "dtim.h"
 #include "gpt.h"
+#include "pwm.h"
 
 extern int end_game;
 

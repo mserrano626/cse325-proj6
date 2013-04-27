@@ -62,16 +62,22 @@ int pattern2[8][8] = {
 
 
 void game_refresh(){
-	
+	int p_last_row = p_row;
+	int p_last_col = p_col;
 	
 	ghost_movement();
 
 	write_matrix(board);
 	
 	if(g_col == p_col && g_row == p_row){
+		note(0xFF);
 		end_game = 0;
 	}
-	
+	/*
+	if(p_last_row != p_row || p_last_col != p_col){
+		note(0x0D);
+	}
+	*/
 	
 }
 
@@ -87,6 +93,8 @@ void change_dir(int direction){
 			clear_pac();
 			p_row = p_row - 1;
 			board[p_col][p_row] = pac;
+			note(0x0D);
+			
 			//printf("up");
 		}
 		break;
@@ -98,6 +106,7 @@ void change_dir(int direction){
 			clear_pac();
 			p_row = p_row + 1;
 			board[p_col][p_row] = pac;
+			note(0x0D);
 			//printf("down");
 		}
 		break;
@@ -109,6 +118,7 @@ void change_dir(int direction){
 			clear_pac();
 			p_col = p_col + 1;
 			board[p_col][p_row] = pac;
+			note(0x0D);
 			//printf("left");
 		}
 		break;
@@ -120,11 +130,13 @@ void change_dir(int direction){
 			clear_pac();
 			p_col = p_col - 1;
 			board[p_col][p_row] = pac;
+			note(0x0D);
 			//printf("right");
 		}
 		break;
 	case 4: 
 		board[p_col][p_row] = pac;
+		note(0xFF);
 		//printf("stop");
 		break;
 	}
@@ -243,4 +255,24 @@ int check_wall_right(){
 	}
 	else
 		return 1;
+}
+
+void dead_sound(){
+	int i = 0;
+	int deathsound[] = {0x05, 0x04, 0x03, 0x02, 0x01, 0x00, 0xFF};
+	
+	note(deathsound[i]);
+	i++;
+	MCF_PIT1_PCSR &= ~(1);
+		if(i == 7)
+		{
+			i = 0;
+			MCF_PIT0_PCSR &= ~(1);
+			MCF_PIT1_PMR = 999;
+			MCF_PIT0_PMR = 4999;
+		}
+	
+	
+	
+	
 }
