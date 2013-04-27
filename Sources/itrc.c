@@ -69,7 +69,7 @@ __declspec(interrupt) void pit0_isr(){
                 screencount++;
                 
                 ledm_refresh();
-                if(screencount == 256){
+                if(screencount == (4*256)){
                 	screencount = 0;
                 	game_refresh();
                 }
@@ -79,15 +79,15 @@ __declspec(interrupt) void pit0_isr(){
 
 __declspec(interrupt) void pit1_isr(){
 
-                //led_refresh();
-                //Clear pit 0 channel 0 interrupt request flag
+              
+                //Clear pit 1 channel 0 interrupt request flag
                 //disable pit 1
 				MCF_PIT1_PCSR &= ~(0x01) << 0;
 				//clear interupt
-				MCF_PIT1_PCSR |= 0x0004;
+				MCF_PIT1_PCSR &= ~((0x01) << 2);
 
                 
-                //note(0xFF, 0x03);
+               
 
                 //nunchuck read
                 fst_nunchuk_read();

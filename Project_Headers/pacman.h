@@ -11,4 +11,8 @@
 extern void game_refresh();
 extern void change_dir(int);
 extern void game_reset();
+extern void ghost_movement();
+extern void clear_ghost();
+extern void pac_movement();
+extern void clear_pac();
 #endif /* PACMAN_H_ */
