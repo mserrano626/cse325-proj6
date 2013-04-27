@@ -95,13 +95,13 @@ __declspec(interrupt) void pit1_isr(){
                 MCF_PIT1_PCSR |= 0x01;
 }
 
-/*
+
 __declspec(interrupt) void gpt0_isr()
 {
         //Clear the interrupt request flag
         MCF_GPT_GPTFLG1 = 0x01;
-        // This will change the song BPM
-        //set_tempo();
+        
+        game_reset();
         
 }
 
@@ -112,5 +112,5 @@ __declspec(interrupt) void gpt0_isr()
         //MCF_QSPI_QIR &= (~(0x1) << 8);
         
 //}
- */
+ 
  

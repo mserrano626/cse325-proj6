@@ -73,28 +73,49 @@ void game_refresh(){
 void change_dir(int direction){
 	switch (direction){
 	case 0:	
-		clear_pac();
-		p_row = p_row - 1;
-		board[p_col][p_row] = pac;
-		//printf("up");
+		
+		if(p_row == 0 || check_wall_up() == 0){
+			board[p_col][p_row] = pac;
+		}
+		else{	
+			clear_pac();
+			p_row = p_row - 1;
+			board[p_col][p_row] = pac;
+			//printf("up");
+		}
 		break;
 	case 1: 
-		clear_pac();
-		p_row = p_row + 1;
-		board[p_col][p_row] = pac;
-		//printf("down");
+		if(p_row == 7 || check_wall_down() == 0 ){
+			board[p_col][p_row] = pac;
+		}
+		else{
+			clear_pac();
+			p_row = p_row + 1;
+			board[p_col][p_row] = pac;
+			//printf("down");
+		}
 		break;
 	case 2:
-		clear_pac();
-		p_col = p_col + 1;
-		board[p_col][p_row] = pac;
-		//printf("left");
+		if(p_col == 7 || check_wall_left() == 0){
+			board[p_col][p_row] = pac;
+		}
+		else{
+			clear_pac();
+			p_col = p_col + 1;
+			board[p_col][p_row] = pac;
+			//printf("left");
+		}
 		break;
 	case 3: 
-		clear_pac();
-		p_col = p_col - 1;
-		board[p_col][p_row] = pac;
-		//printf("right");
+		if(p_col == 0 || check_wall_right() == 0){
+			board[p_col][p_row] = pac;
+		}
+		else{
+			clear_pac();
+			p_col = p_col - 1;
+			board[p_col][p_row] = pac;
+			//printf("right");
+		}
 		break;
 	case 4: 
 		board[p_col][p_row] = pac;
@@ -171,4 +192,36 @@ void clear_pac(){
 	board[p_col][p_row] = black;
 	
 	
+}
+
+int check_wall_up(){
+	if(board[p_col][p_row-1] == green){
+		return 0;
+	}
+	else
+		return 1;
+}
+
+int check_wall_down(){
+	if(board[p_col][p_row+1] == green){
+		return 0;
+	}
+	else
+		return 1;
+}
+
+int check_wall_left(){
+	if(board[p_col+1][p_row] == green){
+		return 0;
+	}
+	else
+		return 1;
+}
+
+int check_wall_right(){
+	if(board[p_col-1][p_row] == green){
+		return 0;
+	}
+	else
+		return 1;
 }

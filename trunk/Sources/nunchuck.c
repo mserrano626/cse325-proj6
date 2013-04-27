@@ -10,7 +10,7 @@
 #define FST_NUNCHUK_DELAY_US	150
 #define FST_NUNCHUK_REFRESH_MS	250
 
-int count;
+
 
 
 void fst_nunchuk_init(){
@@ -45,25 +45,25 @@ void fst_nunchuk_read(){
 	
 	fst_nunchuk_xmit_cmd(0xFB, 0x00);
 	
-	fst_nunchuk_xmit_cmd(0x00, 0x55);
+	fst_nunchuk_xmit_cmd(0x00, 0x00);
 	
 	i2c_rx(FST_NUNCHUK_I2C_ADDR, 6, data, FST_NUNCHUK_DELAY_US);
 	
 	//checks to see if joystick is moving left or right
-	if (data[0] < 30){
+	if (data[0] < 75){
 		nunchuk_left();
 	}
-	else if (data[0] > 225){
+	else if (data[0] > 175){
 		nunchuk_right();
 	}
-	else 
+	else if(data[0] > 100 && data[0] < 150 && data[1] > 100 && data[1] < 150)
 		fst_nunchuk_reset();
 	
 	//checks to see if joystick is moving up or down
-	if (data[1] < 30){
+	if (data[1] < 75){
 		nunchuk_down();
 	}
-	else if (data[1] > 208){
+	else if (data[1] > 175){
 		nunchuk_up();
 	}
 	/*
@@ -82,10 +82,10 @@ void fst_nunchuk_reset(){
 
 }
 
-void fst_nunchuk_xmit_cmd (unsigned char reg, unsigned char cmd){
+void fst_nunchuk_xmit_cmd (int reg, int cmd){
 	
 	int data[2] = {0, 0};
-	
+	int count = 0;
 	if (reg != 0x00)
 	{
 		data[0] = reg;
@@ -97,9 +97,9 @@ void fst_nunchuk_xmit_cmd (unsigned char reg, unsigned char cmd){
 		count = 1;
 	}
 	
-	i2c_tx(FST_NUNCHUK_I2C_ADDR, count, data, FST_NUNCHUK_DELAY_US);
+	i2c_tx(0x52, count, data, 150);
 	
 	//use DMA timer 3 to busy-delay for 2x FST_NUNCHUK_DELAY_US microseconds
 	
-	dtim0_delay(2*FST_NUNCHUK_DELAY_US);
+	dtim0_delay(2*150);
 }

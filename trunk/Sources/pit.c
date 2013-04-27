@@ -37,7 +37,7 @@ void pit1_init(){
     MCF_PIT1_PCSR |= 1 << 2; // Clear interrupt request flag
     MCF_PIT1_PCSR |= 1 << 1; // Make PCNTR0 value into PMR0
     
-    MCF_PIT1_PMR = 10000;
+    MCF_PIT1_PMR = 4999;
     MCF_PIT1_PCSR |= (11) << 8;
     
     
