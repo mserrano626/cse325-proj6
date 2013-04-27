@@ -16,7 +16,7 @@ __declspec(noreturn) void main(){
 	
 	
 	fst_nunchuk_init();//look in i2c_tx_byte
-	
+	gpt_init();
 	qspi_init();
 	ledm_init();
 	int_uninhibit_all();
