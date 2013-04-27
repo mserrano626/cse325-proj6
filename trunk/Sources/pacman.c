@@ -6,12 +6,22 @@
  */
 
 #include "global.h"
-#include <stdio.h>
+//#include <stdio.h>
 
 #define black 0
 #define	red  1
 #define	green 2
 #define	orange 3
+
+int ghost = red;
+int ghostmove = 0;
+int g_col = 0;
+int g_row = 0;
+
+int pac = orange;
+int p_col = 7;
+int p_row = 7;
+
 
 int board[8][8] = {
         { black, black, black, black, black, black, black, black},
@@ -51,6 +61,9 @@ int pattern2[8][8] = {
 
 void game_refresh(){
 	
+	
+	ghost_movement();
+
 	write_matrix(board);
 	
 	
@@ -59,27 +72,103 @@ void game_refresh(){
 
 void change_dir(int direction){
 	switch (direction){
-	case 0:	printf("up");
+	case 0:	
+		clear_pac();
+		p_row = p_row - 1;
+		board[p_col][p_row] = pac;
+		//printf("up");
 		break;
-	case 1: printf("down");
+	case 1: 
+		clear_pac();
+		p_row = p_row + 1;
+		board[p_col][p_row] = pac;
+		//printf("down");
 		break;
-	case 2: printf("left");
+	case 2:
+		clear_pac();
+		p_col = p_col + 1;
+		board[p_col][p_row] = pac;
+		//printf("left");
 		break;
-	case 3: printf("right");
+	case 3: 
+		clear_pac();
+		p_col = p_col - 1;
+		board[p_col][p_row] = pac;
+		//printf("right");
 		break;
-	case 4: printf("stop");
+	case 4: 
+		board[p_col][p_row] = pac;
+		//printf("stop");
 		break;
 	}
 }
 
 void game_reset(){
-	int ghost = red;
+	
+	
 	//init ghost position
 	board[0][0] = ghost;
+	board[7][7] = pac;
 	
 	
 	pit0_init();
-	//pit1_init();
+	pit1_init();
 }
 
-///game refresh
+void ghost_movement(){
+	if(ghostmove < 6){
+		clear_ghost();
+		g_col = g_col + 1;
+		board[g_col][g_row] = ghost;
+		ghostmove++;
+	}
+	else if(ghostmove == 6 || ghostmove < 8){
+		clear_ghost();
+		g_row = g_row + 1;
+		board[g_col][g_row] = ghost;
+		ghostmove++;
+	}
+	else if(ghostmove == 8 || ghostmove < 12){
+		clear_ghost();
+		g_col = g_col - 1;
+		board[g_col][g_row] = ghost;
+		ghostmove++;
+	}
+	else if(ghostmove == 12 || ghostmove < 16){
+		clear_ghost();
+		g_row = g_row + 1;
+		board[g_col][g_row] = ghost;
+		ghostmove++;
+	}
+	else if(ghostmove == 16 || ghostmove < 18){
+		clear_ghost();
+		g_col = g_col - 1;
+		board[g_col][g_row] = ghost;
+		ghostmove++;
+	}
+	else if(ghostmove == 18 || ghostmove < 24){
+		clear_ghost();
+		g_row = g_row - 1;
+		board[g_col][g_row] = ghost;
+		ghostmove++;
+	}
+	else{
+		ghostmove = 0;
+	}
+	
+}
+
+void clear_ghost(){
+	
+	board[g_col][g_row] = black;
+}
+
+void pac_movement(){
+	
+}
+
+void clear_pac(){
+	board[p_col][p_row] = black;
+	
+	
+}
