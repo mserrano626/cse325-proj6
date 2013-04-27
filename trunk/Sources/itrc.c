@@ -103,7 +103,7 @@ __declspec(interrupt) void pit1_isr(){
 __declspec(interrupt) void gpt0_isr()
 {
         //Clear the interrupt request flag
-        MCF_GPT_GPTFLG1 = 0x01;
+        MCF_GPT_GPTFLG1 |= 0x01;
         
         game_reset();
         

@@ -134,12 +134,25 @@ void game_reset(){
 	
 	
 	//init ghost position
+	clear_pac();
+	
 	board[0][0] = ghost;
 	board[7][7] = pac;
 	
+	ghostmove = 0;
+	g_col = 0;
+	g_row = 0;
+
+	
+	p_col = 7;
+	p_row = 7;
+	
+	end_game = 1;
 	
 	pit0_init();
 	pit1_init();
+	
+	
 }
 
 void ghost_movement(){

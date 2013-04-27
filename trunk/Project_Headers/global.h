@@ -17,6 +17,7 @@
 #include "nunchuck.h"
 #include "pacman.h"
 #include "dtim.h"
+#include "gpt.h"
 
 extern int end_game;
 
