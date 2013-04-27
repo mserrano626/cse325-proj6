@@ -71,7 +71,11 @@ __declspec(interrupt) void pit0_isr(){
                 ledm_refresh();
                 if(screencount == (4*256)){
                 	screencount = 0;
-                	game_refresh();
+                	if(end_game != 0){
+                		game_refresh();
+                	}
+                	
+                	
                 }
 
                 

@@ -18,7 +18,7 @@
 #include "pacman.h"
 #include "dtim.h"
 
-
+extern int end_game;
 
 
 #endif /* GLOBAL_H_ */

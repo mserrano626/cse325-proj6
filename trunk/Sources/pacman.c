@@ -13,6 +13,8 @@
 #define	green 2
 #define	orange 3
 
+int end_game = 1;
+
 int ghost = red;
 int ghostmove = 0;
 int g_col = 0;
@@ -65,6 +67,10 @@ void game_refresh(){
 	ghost_movement();
 
 	write_matrix(board);
+	
+	if(g_col == p_col && g_row == p_row){
+		end_game = 0;
+	}
 	
 	
 }
