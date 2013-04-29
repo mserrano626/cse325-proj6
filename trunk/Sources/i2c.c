@@ -1,8 +1,9 @@
-/*
- * i2c.c
- *
- *  Created on: Apr 21, 2013
- *      Author: maserra3
+/*Source File:  i2c.c
+ *Project Name: Project 6
+ *Name:                 Mario Serrano
+ *Email:                maserra3@asu.edu
+ *Course name:  CSE325 Embedded Microprocessor Systems
+ *Semester:             Spring 2013
  */
 
 #include "global.h"
@@ -50,7 +51,7 @@ void i2c_init(){
 
 void i2c_reset(){
 	
-	//MCF_I2C0_I2CR &= 0x00;
+	
 	MCF_I2C0_I2CR |= 0x80; //configure IEN
 	MCF_I2C0_I2CR &= ~(0x40);
 	MCF_I2C0_I2CR &= ~(0x20);

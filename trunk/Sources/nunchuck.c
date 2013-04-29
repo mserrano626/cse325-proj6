@@ -1,8 +1,9 @@
-/*
- * nunchuck.c
- *
- *  Created on: Apr 21, 2013
- *      Author: maserra3
+/*Source File:  nunchuck.c
+ *Project Name: Project 6
+ *Name:                 Mario Serrano
+ *Email:                maserra3@asu.edu
+ *Course name:  CSE325 Embedded Microprocessor Systems
+ *Semester:             Spring 2013
  */
 #include "global.h"
 
@@ -14,11 +15,10 @@
 
 
 void fst_nunchuk_init(){
-	//fst_nunchuk_reset();
+	
 	dtim0_init();
 	i2c_init(); //100 kHz
-	//pit1_init();
-	//set up pit timer
+
 	
 	
 }
@@ -66,15 +66,7 @@ void fst_nunchuk_read(){
 	else if (data[1] > 175){
 		nunchuk_up();
 	}
-	/*
-	if ((data[5] & 0x01) == 0){
-		g_callback_button_z();
-	}
-	
-	if(((data[5] & (1 << 1)) >> 1) == 1){
-		g_callback_button_c();
-	}
-	*/
+
 }
 
 void fst_nunchuk_reset(){

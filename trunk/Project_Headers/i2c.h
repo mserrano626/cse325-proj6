@@ -1,9 +1,11 @@
-/*
- * i2c.h
- *
- *  Created on: Apr 21, 2013
- *      Author: maserra3
+/*Source File:  i2c.h
+ *Project Name: Project 6
+ *Name:                 Mario Serrano
+ *Email:                maserra3@asu.edu
+ *Course name:  CSE325 Embedded Microprocessor Systems
+ *Semester:             Spring 2013
  */
+
 
 #ifndef I2C_H_
 #define I2C_H_

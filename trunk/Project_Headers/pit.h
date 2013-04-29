@@ -1,9 +1,11 @@
-/*
- * pit.h
- *
- *  Created on: Apr 19, 2013
- *      Author: maserra3
+/*Source File:  pit.h
+ *Project Name: Project 6
+ *Name:                 Mario Serrano
+ *Email:                maserra3@asu.edu
+ *Course name:  CSE325 Embedded Microprocessor Systems
+ *Semester:             Spring 2013
  */
+
 
 #ifndef PIT_H_
 #define PIT_H_
