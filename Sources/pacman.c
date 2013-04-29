@@ -147,6 +147,7 @@ void game_reset(){
 	
 	//init ghost position
 	clear_pac();
+	clear_ghost();
 	
 	board[0][0] = ghost;
 	board[7][7] = pac;
