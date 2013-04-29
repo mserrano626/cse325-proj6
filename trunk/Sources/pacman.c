@@ -95,7 +95,7 @@ void change_dir(int direction){
 			p_row = p_row - 1;
 			board[p_col][p_row] = pac;
 			note(0x03);
-			dtim3_delay(10);
+			
 			note(0x00);
 
 			//printf("up");
@@ -110,7 +110,7 @@ void change_dir(int direction){
 			p_row = p_row + 1;
 			board[p_col][p_row] = pac;
 			note(0x03);
-			dtim3_delay(10);
+			
 			note(0x00);
 
 			//printf("down");
@@ -125,7 +125,7 @@ void change_dir(int direction){
 			p_col = p_col + 1;
 			board[p_col][p_row] = pac;
 			note(0x03);
-			dtim3_delay(10);
+			
 			note(0x00);
 
 			//printf("left");
@@ -140,7 +140,7 @@ void change_dir(int direction){
 			p_col = p_col - 1;
 			board[p_col][p_row] = pac;
 			note(0x03);
-			dtim3_delay(10);
+			
 			note(0x00);
 
 			//printf("right");
@@ -177,7 +177,7 @@ void game_reset(){
 	pit0_init();
 	pit1_init();
 	
-	dtim3_init();
+	
 	
 	
 }
@@ -271,7 +271,7 @@ int check_wall_right(){
 	else
 		return 1;
 }
-
+/*
 void dead_sound(){
 	int i = 0;
 	int deathsound[] = {0x05, 0x04, 0x03, 0x02, 0x01, 0x00, 0xFF};
@@ -291,3 +291,4 @@ void dead_sound(){
 	
 	
 }
+*/

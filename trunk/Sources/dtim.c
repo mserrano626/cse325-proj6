@@ -38,7 +38,7 @@ void dtim0_delay(int p_delay){
 void dtim3_delay(int p_delay){
 	
 	MCF_DTIM3_DTCN = 0x00;
-	MCF_DTIM3_DTRR = (unsigned long)(p_delay -1);
+	MCF_DTIM3_DTRR = (unsigned long)((p_delay -1));
 	MCF_DTIM3_DTER |= 0x02;
 	MCF_DTIM3_DTMR |= 0x0001;
 	

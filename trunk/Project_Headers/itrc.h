@@ -23,4 +23,7 @@ extern __declspec(interrupt) void pit1_isr();
 extern __declspec(interrupt) void gpt0_isr();
 //extern __declspec(interrput) void qspi_isr();
 
+
+extern void dead_sound();
+
 #endif /* ITRC_H_ */
