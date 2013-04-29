@@ -77,7 +77,7 @@ __declspec(interrupt) void pit0_isr(){
                 	}
                 	else if(end_game == 0){
                 		dead_sound();
-                		//note(0xFF);
+                		
                 		
                 	}
            
@@ -116,14 +116,7 @@ __declspec(interrupt) void gpt0_isr()
         
 }
 
-//__declspec(interrput) void qspi_isr()
-//{
-        //interupt_config(18, 4, 6, isr_funct qspi_isr);
-        //clear request flag
-        //MCF_QSPI_QIR &= (~(0x1) << 8);
-        
-//}
- 
+
 void dead_sound(){
 	
 	int deathsound[] = {0x05, 0x04, 0x03, 0x02, 0x01, 0x00, 0xFF};
