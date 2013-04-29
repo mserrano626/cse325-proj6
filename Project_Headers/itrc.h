@@ -1,6 +1,6 @@
 
 /*Source File:  itrc.h
- *Project Name: Project 5
+ *Project Name: Project 6
  *Name:                 Mario Serrano
  *Email:                maserra3@asu.edu
  *Course name:  CSE325 Embedded Microprocessor Systems

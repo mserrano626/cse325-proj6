@@ -1,9 +1,11 @@
-/*
- * ledm.h
- *
- *  Created on: Apr 19, 2013
- *      Author: maserra3
+/*Source File:  ledm.h
+ *Project Name: Project 6
+ *Name:                 Mario Serrano
+ *Email:                maserra3@asu.edu
+ *Course name:  CSE325 Embedded Microprocessor Systems
+ *Semester:             Spring 2013
  */
+
 
 #ifndef LEDM_H_
 #define LEDM_H_

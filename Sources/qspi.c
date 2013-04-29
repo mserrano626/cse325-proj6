@@ -1,8 +1,9 @@
-/*
- * qspi.c
- *
- *  Created on: Apr 19, 2013
- *      Author: maserra3
+/*Source File:  qspi.c
+ *Project Name: Project 6
+ *Name:                 Mario Serrano
+ *Email:                maserra3@asu.edu
+ *Course name:  CSE325 Embedded Microprocessor Systems
+ *Semester:             Spring 2013
  */
 #include "global.h"
 
@@ -31,8 +32,7 @@ void qspi_transmit(uint8 data[]){
 		
 		//set newqp and endqp to point to the beginning and ending addresses of the queue entries
 		//in the command and transmit queues.
-		/*MCF_QSPI_QWR &= MCF_QSPI_QWR_NEWQP(0);
-		MCF_QSPI_QWR |= MCF_QSPI_QWR_ENDQP(2);*/
+		
 		MCF_QSPI_QWR &= 0xFFF0;
 		MCF_QSPI_QWR |= MCF_QSPI_QWR_ENDQP(2);
 		

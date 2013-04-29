@@ -1,12 +1,13 @@
-/*
- * pacman.c
- *
- *  Created on: Apr 22, 2013
- *      Author: maserra3
+/*Source File:  pacman.c
+ *Project Name: Project 6
+ *Name:                 Mario Serrano
+ *Email:                maserra3@asu.edu
+ *Course name:  CSE325 Embedded Microprocessor Systems
+ *Semester:             Spring 2013
  */
 
 #include "global.h"
-//#include <stdio.h>
+
 
 #define black 0
 #define	red  1
@@ -93,8 +94,10 @@ void change_dir(int direction){
 			clear_pac();
 			p_row = p_row - 1;
 			board[p_col][p_row] = pac;
-			note(0x0D);
-			
+			note(0x03);
+			dtim3_delay(10);
+			note(0x00);
+
 			//printf("up");
 		}
 		break;
@@ -106,7 +109,10 @@ void change_dir(int direction){
 			clear_pac();
 			p_row = p_row + 1;
 			board[p_col][p_row] = pac;
-			note(0x0D);
+			note(0x03);
+			dtim3_delay(10);
+			note(0x00);
+
 			//printf("down");
 		}
 		break;
@@ -118,7 +124,10 @@ void change_dir(int direction){
 			clear_pac();
 			p_col = p_col + 1;
 			board[p_col][p_row] = pac;
-			note(0x0D);
+			note(0x03);
+			dtim3_delay(10);
+			note(0x00);
+
 			//printf("left");
 		}
 		break;
@@ -130,7 +139,10 @@ void change_dir(int direction){
 			clear_pac();
 			p_col = p_col - 1;
 			board[p_col][p_row] = pac;
-			note(0x0D);
+			note(0x03);
+			dtim3_delay(10);
+			note(0x00);
+
 			//printf("right");
 		}
 		break;
@@ -164,6 +176,8 @@ void game_reset(){
 	
 	pit0_init();
 	pit1_init();
+	
+	dtim3_init();
 	
 	
 }

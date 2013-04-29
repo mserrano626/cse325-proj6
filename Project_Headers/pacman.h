@@ -1,9 +1,11 @@
-/*
- * pacman.h
- *
- *  Created on: Apr 22, 2013
- *      Author: maserra3
+/*Source File:  pacman.h
+ *Project Name: Project 6
+ *Name:                 Mario Serrano
+ *Email:                maserra3@asu.edu
+ *Course name:  CSE325 Embedded Microprocessor Systems
+ *Semester:             Spring 2013
  */
+
 
 #ifndef PACMAN_H_
 #define PACMAN_H_

@@ -1,16 +1,17 @@
-/*
- * ledm.c
- *
- *  Created on: Apr 19, 2013
- *      Author: maserra3
+/*Source File:  ledm.c
+ *Project Name: Project 6
+ *Name:                 Mario Serrano
+ *Email:                maserra3@asu.edu
+ *Course name:  CSE325 Embedded Microprocessor Systems
+ *Semester:             Spring 2013
  */
 #include "ledm.h"
 #include "global.h"
 
 
-uint8 Green[8];
-uint8 Red[8];
-uint8 Row;
+uint8 g_green[8];
+uint8 g_red[8];
+uint8 row;
 
 #define black 0
 #define	red  1
@@ -49,18 +50,18 @@ void update_matrix(){
 	int j;
 	
 	for(i = 0 ; i < 8; i++){
-		Red[i] = 0x00;
-		Green[i] = 0x00;
+		g_red[i] = 0x00;
+		g_green[i] = 0x00;
 		for(j = 0 ; j < 8; j++){
 			if(new_pattern[i][j] == red){
-				Red[i] |= 1 << j;
+				g_red[i] |= 1 << j;
 			}
 			else if(new_pattern[i][j] == green){
-				Green[i] |= 1 << j;
+				g_green[i] |= 1 << j;
 			}
 			else if(new_pattern[i][j] == orange){
-				Red[i] |= 1 << j;
-				Green[i] |= 1 << j;
+				g_red[i] |= 1 << j;
+				g_green[i] |= 1 << j;
 			}
 		}
 	}
@@ -70,9 +71,9 @@ void update_matrix(){
 
 void ledm_refresh(){
 	uint8 data[3];
-	data[0] = Red [Row];
-	data[1] = Green [Row];
-	data[2] = (unsigned char) ~(1 << Row);
+	data[0] = g_red [row];
+	data[1] = g_green [row];
+	data[2] = (unsigned char) ~(1 << row);
 			
 	MCF_GPIO_SETTH |= 0x80;
 	MCF_GPIO_CLRTH &= 0xBF;
@@ -82,10 +83,10 @@ void ledm_refresh(){
 	MCF_GPIO_SETTH |= 0x40;
 	MCF_GPIO_CLRTH &= 0x7F;
 			
-	Row = Row + 1;
+	row = row + 1;
 
-	if(Row == 8)
+	if(row == 8)
 	{
-		Row = 0;
+		row = 0;
 	}
 }
