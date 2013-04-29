@@ -13,6 +13,7 @@
 
 extern uint32 __VECTOR_RAM[];
 int screencount;
+int i;
 #define ICR_BASE (volatile uint8 *)(0x40000C40)
 
 void interupt_config(int src, int level, int priority, isr_funct isr){
@@ -75,7 +76,9 @@ __declspec(interrupt) void pit0_isr(){
                 		game_refresh();
                 	}
                 	else if(end_game == 0){
-                		//dead_sound();
+                		dead_sound();
+                		//note(0xFF);
+                		
                 	}
            
                 	
@@ -121,4 +124,41 @@ __declspec(interrupt) void gpt0_isr()
         
 //}
  
- 
+void dead_sound(){
+	
+	int deathsound[] = {0x05, 0x04, 0x03, 0x02, 0x01, 0x00, 0xFF};
+
+	
+		dtim3_init();
+		note(deathsound[0]);
+		dtim3_delay(100000);
+		note(deathsound[1]);
+		dtim3_delay(100000);
+		note(deathsound[2]);
+		dtim3_delay(100000);
+		note(deathsound[3]);
+		dtim3_delay(100000);
+		note(deathsound[4]);
+		dtim3_delay(100000);
+		note(deathsound[5]);
+		dtim3_delay(100000);
+		note(deathsound[6]);
+		i++;
+	
+	
+	MCF_PIT1_PCSR &= ~(1);
+	//MCF_PIT0_PCSR &= ~(1);
+
+	if(i == 3)
+	{
+		i = 0;
+		MCF_PIT1_PCSR &= ~(1);
+		note(0xFF);
+			//MCF_PIT1_PMR = 1000;
+			//MCF_PIT0_PMR = 5000;
+	}
+	
+	
+	
+	
+}

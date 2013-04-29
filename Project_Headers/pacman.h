@@ -21,5 +21,5 @@ extern int check_wall_up();
 extern int check_wall_down();
 extern int check_wall_left();
 extern int check_wall_right();
-extern void dead_sound();
+//extern void dead_sound();
 #endif /* PACMAN_H_ */
