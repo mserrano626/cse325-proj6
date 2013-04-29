@@ -74,11 +74,7 @@ void game_refresh(){
 		note(0xFF);
 		end_game = 0;
 	}
-	/*
-	if(p_last_row != p_row || p_last_col != p_col){
-		note(0x0D);
-	}
-	*/
+	
 	
 }
 
@@ -271,24 +267,3 @@ int check_wall_right(){
 	else
 		return 1;
 }
-/*
-void dead_sound(){
-	int i = 0;
-	int deathsound[] = {0x05, 0x04, 0x03, 0x02, 0x01, 0x00, 0xFF};
-	
-	note(deathsound[i]);
-	i++;
-	MCF_PIT1_PCSR &= ~(1);
-		if(i == 7)
-		{
-			i = 0;
-			MCF_PIT0_PCSR &= ~(1);
-			MCF_PIT1_PMR = 999;
-			MCF_PIT0_PMR = 4999;
-		}
-	
-	
-	
-	
-}
-*/
